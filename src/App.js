@@ -5,7 +5,7 @@ function App() {
 
   useEffect(()=>{
 
-    axios.get('http://localhost:4000/').then(res=>{
+    axios.get('http://localhost:4000/api').then(res=>{
       console.log(res.data.data)
       setData(res.data.data)
     }).catch(err=>{
