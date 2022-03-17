@@ -1,9 +1,17 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const express = require('express');
+const compression = require('compression');
+const path = require('path');
+const app = express();
 
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(compression());
+app.use(express.static(path.join(__dirname, 'build')));
 
-app.listen(3000, (err)=>{
-    console.log('front application listening on port 3000')
-})
+app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`App is running on port ${PORT}`);
+});
